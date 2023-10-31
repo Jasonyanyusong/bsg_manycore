@@ -164,7 +164,7 @@ endif
 LINK_SCRIPT ?= $(CURR_DIR)/bsg_link.ld
 
 $(CURR_DIR)/bsg_link.ld: $(LINK_GEN)
-	python $(LINK_GEN) $(LINK_GEN_OPTS) --out=$@
+	python2 $(LINK_GEN) $(LINK_GEN_OPTS) --out=$@
 
 RISCV_LINK_OPTS ?= 
 
@@ -300,7 +300,7 @@ SKIP_DRAM_INSTRUCTION_LOAD ?= 0
 SKIP_ZEROS ?= 0
 
 %.nbf: %.riscv
-	python $(NBF_PY) \
+	python2 $(NBF_PY) \
 	  $*.riscv \
 		$(BSG_MACHINE_GLOBAL_X) $(BSG_MACHINE_GLOBAL_Y) \
 		$(BSG_MACHINE_VCACHE_WAY) $(BSG_MACHINE_VCACHE_SET) \
@@ -316,7 +316,7 @@ SKIP_ZEROS ?= 0
 		$(SKIP_ZEROS) > $*.nbf
 
 %.bin:  %.hex
-	python $(HEX2BIN) $< 32 > $@
+	python2 $(HEX2BIN) $< 32 > $@
 
 %.dis: %.riscv
 	$(RISCV_BIN_DIR)/riscv32-unknown-elf-dramfs-objdump -M numeric --disassemble-all -S $<

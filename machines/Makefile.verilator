@@ -6,7 +6,7 @@ $(error Verilator requires > GCC 7)
 endif
 
 VERILATOR ?= verilator
-VERILATOR_THREADS ?= 2
+VERILATOR_THREADS ?= 4
 
 VERILATOR_INCLUDES += $(foreach inc,$(VINCLUDES),+incdir+"$(inc)")
 VERILATOR_DEFINES  += $(foreach def,$(VDEFINES),+define+"$(def)")

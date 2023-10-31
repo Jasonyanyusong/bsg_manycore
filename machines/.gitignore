@@ -27,3 +27,8 @@ stack.info.*
 */csrc-coverage
 */*.tr
 */bsg_tag_boot_rom.v
+obj_dir/
+obj_dir_debug/
+obj_dir_profile/
+simsc-debug
+simsc-profile
