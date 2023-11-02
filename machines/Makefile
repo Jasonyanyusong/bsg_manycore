@@ -23,10 +23,16 @@ all: $(DEFAULT_TARGETS) $(DEFAULT_DEBUG_TARGETS) $(DEFAULT_PROFILE_TARGETS)
 include arch_filelist.mk
 include sim_filelist.mk
 
+# TODO: What is the Makefile.surelog for? We can include it in later code
+#include Makefile.surelog
+
+ifeq ($(BSG_PLATFORM),vcs)
 include Makefile.vcs
+else ifeq ($(BSG_PLATFORM),verilator)
 include Makefile.verilator
-include Makefile.surelog
+else ifeq ($(BSG_PLATFORM),xcelium)
 include Makefile.xcelium
+endif
 
 clean:
 	rm -rf */csrc*
