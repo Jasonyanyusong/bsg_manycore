@@ -28,7 +28,7 @@
 .DEFAULT_GOAL := help
 
 TARGET_ARCH       := rv64imaf
-TARGET_ABI        := ilp64f
+TARGET_ABI        := lp64f
 TARGET_CFLAGS     := '-fno-common'
 
 TOOLCHAIN_REPO    := riscv-gnu-toolchain
