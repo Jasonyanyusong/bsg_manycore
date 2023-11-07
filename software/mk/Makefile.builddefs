@@ -83,7 +83,10 @@ vpath %.S $(COMMON_SRC_DIRS)
 # flags
 OPT_LEVEL ?= -O2
 RISCV_GCC_EXTRA_OPTS ?=
-RISCV_GCC_OPTS  =-march=$(ARCH_OP) -static -std=gnu99 -ffast-math -fno-common -mtune=bsg_vanilla_2020 -mcmodel=medany
+RISCV_GCC_OPTS  =-march=$(ARCH_OP) -static -std=gnu99 -ffast-math -fno-common -mtune=bsg_vanilla_2020
+
+# For RV64, set memory model to medany rather than default medlow
+RISCV_GCC_OPTS += -mcmodel=medany
 
 RISCV_GCC_OPTS +=$(RISCV_GCC_EXTRA_OPTS) -I$(BSG_MANYCORE_DIR)/software/spmd/common/ -I$(BSG_MANYCORE_DIR)/software/bsg_manycore_lib
 RISCV_GCC_OPTS +=-Dbsg_tiles_X=$(bsg_tiles_X) -Dbsg_tiles_Y=$(bsg_tiles_Y)
@@ -99,6 +102,8 @@ RISCV_GCC_OPTS +=-DBARRIER_RUCHE_FACTOR_X=$(BSG_MACHINE_BARRIER_RUCHE_FACTOR_X)
 # This macros are required by the program to know where to send the finish/fail packets to the host.
 RISCV_GCC_OPTS +=-DIO_X_INDEX=$(BSG_MACHINE_HOST_X_CORD)
 RISCV_GCC_OPTS +=-DIO_Y_INDEX=$(BSG_MACHINE_HOST_Y_CORD)
+
+$(info RISCV-GCC-OPTS = $(RISCV_GCC_OPTS))
 
 ifeq ($(BSG_NEWLIB), 1)
   ARGC ?= 1
