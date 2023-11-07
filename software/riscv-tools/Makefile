@@ -151,7 +151,9 @@ configure-riscv-gnu-tools:
 	@echo "Configuring toolchain..."
 	@echo "====================================="
 	cd riscv-gnu-toolchain && \
-		./configure --prefix=$(RISCV) --disable-linux --with-arch=$(TARGET_ARCH) --with-abi=$(TARGET_ABI) --disable-gdb --with-tune=bsg_vanilla_2020 --with-cmodel=medany
+		./configure --prefix=$(RISCV) --disable-linux --with-arch=$(TARGET_ARCH) --with-abi=$(TARGET_ABI) --disable-gdb --with-tune=bsg_vanilla_2020 --with-cmodel=medany \
+			--disable-linux --with-target-cflags="-mstrict-align -mcmodel=medany" \
+			--disable-linux --with-target-cxxflags="-mstrict-align -mcmodel=medany"
 
 build-riscv-gnu-tools: configure-riscv-gnu-tools
 	@echo "====================================="
